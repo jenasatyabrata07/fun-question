@@ -4,141 +4,219 @@ const yesButton =
 const noButton =
   document.getElementById("noButton");
 
-const message =
-  document.getElementById("message");
+const subtitle =
+  document.getElementById("subtitle");
 
-const question =
-  document.getElementById("question");
+const hint =
+  document.getElementById("hint");
 
-const confetti =
-  document.getElementById("confetti");
+const loveCard =
+  document.getElementById("loveCard");
+
+const successScreen =
+  document.getElementById("successScreen");
+
+const closeButton =
+  document.getElementById("closeButton");
+
+const confettiContainer =
+  document.getElementById(
+    "confettiContainer"
+  );
 
 
 let noCount = 0;
-
 let answered = false;
 
 
 /*
-  Change these messages if you want.
+  Funny messages when she presses NO.
+  You can change these later.
 */
 
 const noMessages = [
 
-  "Are you sure? 😢 Try again!",
+  {
+    text:
+      "Wait... WHAT?! 😳",
+    hint:
+      "Are you sure about that? 🥺"
+  },
 
-  "Hmm... I think you meant YES 😄",
+  {
+    text:
+      "Maybe your finger slipped 😂",
+    hint:
+      "Try that button again... but differently 😌"
+  },
 
-  "Nice try! 😂 The YES button is right there!",
+  {
+    text:
+      "Hmm... my heart heard a YES 👀❤️",
+    hint:
+      "Let's pretend that NO never happened."
+  },
 
-  "The NO button is getting nervous... 😭",
+  {
+    text:
+      "My heart is filing a complaint 💔😂",
+    hint:
+      "You have one more chance..."
+  },
 
-  "Come onnnn... give YES a chance! ❤️",
+  {
+    text:
+      "Okay... now you're just teasing me 😭",
+    hint:
+      "I know that YES is hiding somewhere."
+  },
 
-  "Okay, this is becoming suspicious... 👀",
+  {
+    text:
+      "This is getting emotionally complicated 😂",
+    hint:
+      "Please consult your heart. ❤️"
+  },
 
-  "I still believe in you. Click YES! 🥹"
+  {
+    text:
+      "Fine... I'll ask one last time 🥺",
+    hint:
+      "Do you REALLY love me?"
+  }
 
 ];
 
 
 /*
-  YES BUTTON
+  YES
 */
 
 yesButton.addEventListener(
   "click",
-  () => {
-
-    if (answered) {
-      return;
-    }
-
-    answered = true;
-
-    question.textContent =
-      "YAAAAAY! 🎉❤️";
-
-    message.textContent =
-      "I knew you'd say YES! You just made my day! 🥰";
-
-    noButton.style.display =
-      "none";
-
-    yesButton.textContent =
-      "YES! ❤️";
-
-    yesButton.style.transform =
-      "scale(1.12)";
-
-    document.body.classList.add(
-      "success"
-    );
-
-    createConfetti();
-  }
+  handleYes
 );
 
 
 /*
-  NO BUTTON
+  NO
 */
 
 noButton.addEventListener(
   "click",
-  () => {
-
-    if (answered) {
-      return;
-    }
-
-    noCount++;
-
-
-    /*
-      Show a different funny message.
-    */
-
-    const messageIndex =
-      Math.min(
-        noCount - 1,
-        noMessages.length - 1
-      );
-
-    message.textContent =
-      noMessages[messageIndex];
-
-
-    /*
-      Make YES bigger each time
-      NO is clicked.
-    */
-
-    const yesScale =
-      Math.min(
-        1 + noCount * 0.08,
-        1.55
-      );
-
-    yesButton.style.transform =
-      `scale(${yesScale})`;
-
-
-    /*
-      After the third NO,
-      start moving the NO button.
-    */
-
-    if (noCount >= 3) {
-      moveNoButton();
-    }
-  }
+  handleNo
 );
 
 
 /*
-  Move NO button to a random
-  location on the screen.
+  YES ACTION
+*/
+
+function handleYes() {
+
+  if (answered) {
+    return;
+  }
+
+  answered = true;
+
+  /*
+    Small transition before
+    showing the success screen.
+  */
+
+  loveCard.style.transform =
+    "scale(0.92)";
+
+  loveCard.style.opacity =
+    "0";
+
+  createConfetti();
+
+  setTimeout(() => {
+
+    successScreen.classList.add(
+      "show"
+    );
+
+    successScreen.setAttribute(
+      "aria-hidden",
+      "false"
+    );
+
+  }, 350);
+}
+
+
+/*
+  NO ACTION
+*/
+
+function handleNo() {
+
+  if (answered) {
+    return;
+  }
+
+  noCount++;
+
+  const index =
+    Math.min(
+      noCount - 1,
+      noMessages.length - 1
+    );
+
+  subtitle.textContent =
+    noMessages[index].text;
+
+  hint.textContent =
+    noMessages[index].hint;
+
+
+  /*
+    Make YES progressively
+    more tempting.
+  */
+
+  const yesScale =
+    Math.min(
+      1 + noCount * 0.075,
+      1.45
+    );
+
+  yesButton.style.transform =
+    `scale(${yesScale})`;
+
+
+  /*
+    Make the NO button slightly
+    smaller after each NO.
+  */
+
+  const noScale =
+    Math.max(
+      1 - noCount * 0.035,
+      0.78
+    );
+
+  noButton.style.transform =
+    `scale(${noScale})`;
+
+
+  /*
+    Move NO after the third
+    attempt.
+  */
+
+  if (noCount >= 3) {
+    moveNoButton();
+  }
+}
+
+
+/*
+  Move the NO button somewhere
+  safely inside the current screen.
 */
 
 function moveNoButton() {
@@ -147,16 +225,16 @@ function moveNoButton() {
     "moving"
   );
 
+
   const rect =
     noButton.getBoundingClientRect();
 
-  const padding = 16;
+  const padding = 18;
 
 
   /*
-    Calculate available screen
-    space so the button stays
-    visible on phones.
+    Keep it away from the very
+    edge of the screen.
   */
 
   const maxX =
@@ -196,9 +274,8 @@ function moveNoButton() {
 
 
 /*
-  If phone rotates,
-  reposition NO so it doesn't
-  disappear outside the screen.
+  Keep NO inside the screen if
+  the phone rotates or resizes.
 */
 
 window.addEventListener(
@@ -210,23 +287,60 @@ window.addEventListener(
         "moving"
       )
     ) {
+
       moveNoButton();
+
     }
+
   }
 );
 
 
 /*
-  Confetti when YES is clicked.
+  SUCCESS SCREEN
+*/
+
+closeButton.addEventListener(
+  "click",
+  () => {
+
+    successScreen.classList.remove(
+      "show"
+    );
+
+    successScreen.setAttribute(
+      "aria-hidden",
+      "true"
+    );
+
+  }
+);
+
+
+/*
+  CONFETTI
 */
 
 function createConfetti() {
 
-  const pieces = 100;
+  const colors = [
+
+    "#ffffff",
+    "#ffd6e7",
+    "#ffde59",
+    "#ff8fab",
+    "#c77dff",
+    "#80ed99"
+
+  ];
+
+
+  const total = 120;
+
 
   for (
     let i = 0;
-    i < pieces;
+    i < total;
     i++
   ) {
 
@@ -239,44 +353,10 @@ function createConfetti() {
       "confetti";
 
 
-    /*
-      Random horizontal position.
-    */
-
-    piece.style.left =
-      `${Math.random() * 100}%`;
-
-
-    /*
-      Random falling direction.
-    */
-
-    piece.style.setProperty(
-      "--x",
-      `${
-        (Math.random() - 0.5) *
-        260
-      }px`
-    );
-
-
-    /*
-      Random delay.
-    */
-
-    piece.style.animationDelay =
-      `${
-        Math.random() * 0.5
-      }s`;
-
-
-    /*
-      Random size.
-    */
-
     const size =
       6 +
       Math.random() * 8;
+
 
     piece.style.width =
       `${size}px`;
@@ -285,18 +365,9 @@ function createConfetti() {
       `${size * 1.5}px`;
 
 
-    /*
-      Random confetti colors.
-    */
+    piece.style.left =
+      `${Math.random() * 100}%`;
 
-    const colors = [
-      "#ff4d6d",
-      "#ffbe0b",
-      "#8338ec",
-      "#3a86ff",
-      "#22c55e",
-      "#fb7185"
-    ];
 
     piece.style.background =
       colors[
@@ -307,21 +378,33 @@ function createConfetti() {
       ];
 
 
-    confetti.appendChild(
-      piece
+    piece.style.setProperty(
+      "--drift",
+      `${
+        (Math.random() - 0.5) *
+        260
+      }px`
     );
 
 
-    /*
-      Remove the confetti
-      after animation finishes.
-    */
+    piece.style.animationDelay =
+      `${
+        Math.random() * 0.45
+      }s`;
+
+
+    confettiContainer.appendChild(
+      piece
+    );
+
 
     setTimeout(
       () => {
         piece.remove();
       },
-      2400
+      2600
     );
+
   }
+
 }
