@@ -2,67 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   >
 
-  <meta name="theme-color" content="#ff5c8a">
-  <title>A Little Question For You ❤️</title>
+  <meta name="theme-color" content="#ff4f81">
 
-  <link rel="stylesheet" href="style.css">
+  <title>For Rojalin ❤️</title>
+
+  <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
 
-  <!-- Floating background hearts -->
-  <div class="hearts" aria-hidden="true">
+  <!-- Floating hearts in the background -->
+  <div class="floating-hearts" aria-hidden="true">
     <span>❤</span>
     <span>♡</span>
     <span>❤</span>
+    <span>💕</span>
     <span>♡</span>
     <span>❤</span>
+    <span>💗</span>
     <span>♡</span>
     <span>❤</span>
-    <span>♡</span>
-    <span>❤</span>
-    <span>♡</span>
+    <span>💕</span>
   </div>
 
-  <main class="page">
 
-    <section class="love-card" id="loveCard">
+  <!-- =========================
+       QUESTION SCREEN
+  ========================== -->
 
-      <div class="top-heart">💗</div>
+  <main class="main-screen" id="mainScreen">
 
-      <p class="tiny-text">A VERY IMPORTANT QUESTION</p>
+    <div class="question-card" id="questionCard">
+
+      <div class="crown">👑</div>
+
+      <p class="eyebrow">
+        A LITTLE QUESTION FOR YOU
+      </p>
 
       <h1>
-        Do you<br>
-        <span>love me?</span> 🥺❤️
+        Rojalin,
+        <span>do you love me?</span>
+        🥺❤️
       </h1>
 
-      <p class="subtitle" id="subtitle">
+      <p class="subtext" id="subtext">
         Be honest... my heart is watching 👀💕
       </p>
 
-      <div class="question-heart">
-        ❤️
-      </div>
 
-      <div class="buttons">
+      <!-- Big reaction emoji -->
+      <div
+        class="reaction-area"
+        id="reactionArea"
+        aria-hidden="true"
+      ></div>
+
+
+      <!-- Question buttons -->
+
+      <div class="button-area">
 
         <button
-          class="love-button yes-button"
           id="yesButton"
+          class="answer-button yes-button"
           type="button"
         >
           YES 💕
         </button>
 
         <button
-          class="love-button no-button"
           id="noButton"
+          class="answer-button no-button"
           type="button"
         >
           NO 😐
@@ -70,53 +87,125 @@
 
       </div>
 
+
       <p class="hint" id="hint">
-        Choose wisely 😌
+        Choose wisely, Rojalin 😌❤️
       </p>
 
-    </section>
+    </div>
 
   </main>
 
-  <!-- Success screen -->
-  <div
+
+  <!-- =========================
+       SUCCESS SCREEN
+  ========================== -->
+
+  <section
     class="success-screen"
     id="successScreen"
     aria-hidden="true"
   >
 
+    <div class="success-background-hearts" aria-hidden="true">
+      <span>❤</span>
+      <span>💕</span>
+      <span>♡</span>
+      <span>❤</span>
+      <span>💗</span>
+      <span>💕</span>
+      <span>❤</span>
+      <span>♡</span>
+    </div>
+
+
     <div class="success-content">
 
-      <div class="big-heart">❤️</div>
+      <div class="success-crown">
+        👑
+      </div>
 
-      <p class="success-small">
-        I KNEW IT!!!
+      <p class="success-label">
+        ROJALIN
       </p>
 
       <h2>
-        You love me! 🥹💕
+        Said YES! 💖
       </h2>
 
-      <p>
-        My heart officially has<br>
-        a reason to celebrate. 🎉
+      <p class="success-intro">
+        My heart is the happiest today! 🥹❤️
       </p>
 
-      <div class="success-hearts">
-        ❤️ 💕 ❤️ 💕 ❤️
+
+      <!-- Photo -->
+
+      <div class="photo-frame">
+
+        <div class="photo-glow"></div>
+
+        <img
+          src="./photo.jpg"
+          alt="Rojalin and me"
+          class="couple-photo"
+        >
+
+        <div class="photo-heart heart-one">
+          ❤️
+        </div>
+
+        <div class="photo-heart heart-two">
+          💕
+        </div>
+
+        <div class="photo-heart heart-three">
+          ❤️
+        </div>
+
       </div>
 
+
+      <div class="success-message">
+
+        <h3>
+          You just made me
+          the luckiest person
+          in the world! 🌍❤️
+        </h3>
+
+        <div class="divider">
+          <span>♡</span>
+        </div>
+
+        <p class="forever">
+          I Love You
+          <br>
+          Forever & Always
+          💕
+        </p>
+
+        <p class="personal-message">
+          My heart is happiest
+          with you, Rojalin... 🥰
+        </p>
+
+      </div>
+
+
       <button
-        class="close-button"
-        id="closeButton"
+        class="celebrate-button"
+        id="celebrateButton"
         type="button"
       >
-        Okay... I'm blushing now 🙈
+        You made my day! 🥰
       </button>
 
     </div>
 
-  </div>
+  </section>
+
+
+  <!-- Confetti -->
 
   <div
     class="confetti-container"
@@ -124,7 +213,8 @@
     aria-hidden="true"
   ></div>
 
-  <script src="script.js"></script>
+
+  <script src="./script.js"></script>
 
 </body>
 </html>
