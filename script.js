@@ -30,39 +30,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /*
-   * Four NO messages.
+   * Four funny NO responses.
    */
 
   const noMessages = [
 
     {
       symbol: "😂❤️",
+
       text:
-        "Are you sure, or are you just being dramatic?",
+        "Are you sure, or are you just being dramatic? 😂❤️",
+
       hint:
         "Think carefully... 😌"
     },
 
+
     {
       symbol: "🙈💕",
+
       text:
-        "I’m going to pretend I didn’t see that.",
+        "I’m going to pretend I didn’t see that 😭💕",
+
       hint:
-        "Okay... let's try this again 😂"
+        "Okay... let's try this again."
     },
+
 
     {
       symbol: "😌✍️",
+
       text:
-        "That was definitely a typo. We’ll try again.",
+        "That was definitely a typo. We’ll try again 😌",
+
       hint:
         "Take your time this time 👀"
     },
 
+
     {
       symbol: "👀",
+
       text:
-        "Interesting answer… would you like to use your second chance?",
+        "Interesting answer… would you like to use your second chance? 👀",
+
       hint:
         "I highly recommend reconsidering 😂❤️"
     }
@@ -70,9 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
 
-  /* =========================
-     YES
-  ========================= */
+  /* =====================================
+     YES BUTTON
+  ===================================== */
 
   yesButton.addEventListener(
     "click",
@@ -84,13 +95,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
       answered = true;
 
+
+      /*
+       * Confetti starts immediately.
+       */
+
       createConfetti();
+
+
+      /*
+       * Shrink the main card.
+       */
 
       loveCard.style.transform =
         "scale(0.9)";
 
       loveCard.style.opacity =
         "0";
+
+
+      /*
+       * Show success screen.
+       */
 
       setTimeout(
         function () {
@@ -107,13 +133,14 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         350
       );
+
     }
   );
 
 
-  /* =========================
-     NO
-  ========================= */
+  /* =====================================
+     NO BUTTON
+  ===================================== */
 
   noButton.addEventListener(
     "click",
@@ -123,96 +150,170 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      noCount++;
-
-
-      /*
-       * Cycle through our
-       * four messages.
-       */
-
-      const index =
-        (noCount - 1) %
-        noMessages.length;
-
-      const current =
-        noMessages[index];
-
-
-      /*
-       * Show the large emoji.
-       */
-
-      showBigSymbol(
-        current.symbol
-      );
-
-
-      /*
-       * Change message.
-       */
-
-      subtitle.textContent =
-        current.text;
-
-      hint.textContent =
-        current.hint;
-
-
-      /*
-       * Restart message animation.
-       */
-
-      subtitle.classList.remove(
-        "message-pop"
-      );
-
-      void subtitle.offsetWidth;
-
-      subtitle.classList.add(
-        "message-pop"
-      );
-
-
-      /*
-       * Make YES bigger.
-       */
-
-      const yesScale =
-        Math.min(
-          1 + noCount * 0.055,
-          1.35
-        );
-
-      yesButton.style.transform =
-        "scale(" +
-        yesScale +
-        ")";
-
-
-      /*
-       * Shake NO.
-       */
-
-      noButton.classList.remove(
-        "no-shake"
-      );
-
-      void noButton.offsetWidth;
-
-      noButton.classList.add(
-        "no-shake"
-      );
+      showNoMessage();
 
     }
   );
 
 
-  /* =========================
-     BIG SYMBOL
-  ========================= */
+  /* =====================================
+     NO MESSAGE
+  ===================================== */
+
+  function showNoMessage() {
+
+    noCount++;
+
+
+    /*
+     * Select one of the four messages.
+     */
+
+    const index =
+      Math.min(
+        noCount - 1,
+        noMessages.length - 1
+      );
+
+    const current =
+      noMessages[index];
+
+
+    /*
+     * Show large emoji.
+     */
+
+    showBigSymbol(
+      current.symbol
+    );
+
+
+    /*
+     * Change text.
+     */
+
+    subtitle.textContent =
+      current.text;
+
+    hint.textContent =
+      current.hint;
+
+
+    /*
+     * Restart message animation.
+     */
+
+    subtitle.classList.remove(
+      "message-pop"
+    );
+
+    void subtitle.offsetWidth;
+
+    subtitle.classList.add(
+      "message-pop"
+    );
+
+
+    /*
+     * Make YES bigger after every NO.
+     */
+
+    const yesScale =
+      Math.min(
+        1 + noCount * 0.08,
+        1.40
+      );
+
+    yesButton.style.transform =
+      "scale(" +
+      yesScale +
+      ")";
+
+
+    /*
+     * Make NO smaller after every click.
+     *
+     * 1st click = 82%
+     * 2nd click = 64%
+     * 3rd click = 46%
+     * 4th click = 28%
+     * 5th click = disappear
+     */
+
+    if (noCount < 5) {
+
+      const noScale =
+        1 - (
+          noCount * 0.18
+        );
+
+      noButton.style.transform =
+        "scale(" +
+        noScale +
+        ")";
+
+    }
+
+
+    /*
+     * Fifth NO:
+     * completely disappear.
+     */
+
+    if (noCount >= 5) {
+
+      noButton.classList.add(
+        "no-disappear"
+      );
+
+
+      /*
+       * Change message to final state.
+       */
+
+      subtitle.textContent =
+        "Okay... now there's only one button left. 😂❤️";
+
+      hint.textContent =
+        "I think you know what to do 😌💕";
+
+
+      /*
+       * Make YES clearly dominant.
+       */
+
+      yesButton.style.transform =
+        "scale(1.35)";
+
+
+      /*
+       * Remove NO after animation.
+       */
+
+      setTimeout(
+        function () {
+
+          noButton.style.display =
+            "none";
+
+        },
+        450
+      );
+
+    }
+
+  }
+
+
+  /* =====================================
+     BIG REACTION SYMBOL
+  ===================================== */
 
   function showBigSymbol(symbol) {
+
+    /*
+     * Remove previous symbol.
+     */
 
     const oldSymbol =
       document.querySelector(
@@ -224,8 +325,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    /*
+     * Create new symbol.
+     */
+
     const reaction =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
 
     reaction.className =
       "reaction-symbol";
@@ -239,6 +346,11 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
+    /*
+     * Start fading after
+     * it has been visible.
+     */
+
     setTimeout(
       function () {
 
@@ -251,6 +363,10 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
+    /*
+     * Remove it completely.
+     */
+
     setTimeout(
       function () {
 
@@ -259,12 +375,13 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       1500
     );
+
   }
 
 
-  /* =========================
-     SUCCESS CLOSE
-  ========================= */
+  /* =====================================
+     CLOSE SUCCESS SCREEN
+  ===================================== */
 
   closeButton.addEventListener(
     "click",
@@ -283,9 +400,9 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 
 
-  /* =========================
+  /* =====================================
      CONFETTI
-  ========================= */
+  ===================================== */
 
   function createConfetti() {
 
@@ -300,7 +417,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     ];
 
-    const total = 120;
+
+    const total =
+      120;
 
 
     for (
@@ -318,8 +437,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "confetti";
 
 
+      /*
+       * Random size.
+       */
+
       const size =
-        6 + Math.random() * 8;
+        6 +
+        Math.random() * 8;
 
 
       piece.style.width =
@@ -329,9 +453,17 @@ document.addEventListener("DOMContentLoaded", function () {
         (size * 1.5) + "px";
 
 
+      /*
+       * Random starting position.
+       */
+
       piece.style.left =
         Math.random() * 100 + "%";
 
+
+      /*
+       * Random color.
+       */
 
       piece.style.background =
         colors[
@@ -342,6 +474,10 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
 
+      /*
+       * Random movement.
+       */
+
       piece.style.setProperty(
         "--drift",
         (
@@ -351,6 +487,10 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
 
+      /*
+       * Random delay.
+       */
+
       piece.style.animationDelay =
         Math.random() * 0.5 + "s";
 
@@ -359,6 +499,10 @@ document.addEventListener("DOMContentLoaded", function () {
         piece
       );
 
+
+      /*
+       * Clean up.
+       */
 
       setTimeout(
         function () {
@@ -370,6 +514,7 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
     }
+
   }
 
 });
