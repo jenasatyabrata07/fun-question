@@ -1,410 +1,541 @@
-const yesButton =
-  document.getElementById("yesButton");
-
-const noButton =
-  document.getElementById("noButton");
-
-const subtitle =
-  document.getElementById("subtitle");
-
-const hint =
-  document.getElementById("hint");
+document.addEventListener(
+  "DOMContentLoaded",
+  function () {
 
-const loveCard =
-  document.getElementById("loveCard");
+    const yesButton =
+      document.getElementById(
+        "yesButton"
+      );
 
-const successScreen =
-  document.getElementById("successScreen");
+    const noButton =
+      document.getElementById(
+        "noButton"
+      );
 
-const closeButton =
-  document.getElementById("closeButton");
+    const subtitle =
+      document.getElementById(
+        "subtitle"
+      );
 
-const confettiContainer =
-  document.getElementById(
-    "confettiContainer"
-  );
+    const hint =
+      document.getElementById(
+        "hint"
+      );
 
+    const reactionArea =
+      document.getElementById(
+        "reactionArea"
+      );
 
-let noCount = 0;
-let answered = false;
+    const questionCard =
+      document.getElementById(
+        "questionCard"
+      );
 
+    const successScreen =
+      document.getElementById(
+        "successScreen"
+      );
 
-/*
-  Funny messages when she presses NO.
-  You can change these later.
-*/
+    const celebrateButton =
+      document.getElementById(
+        "celebrateButton"
+      );
 
-const noMessages = [
+    const confettiContainer =
+      document.getElementById(
+        "confettiContainer"
+      );
 
-  {
-    text:
-      "Wait... WHAT?! 😳",
-    hint:
-      "Are you sure about that? 🥺"
-  },
 
-  {
-    text:
-      "Maybe your finger slipped 😂",
-    hint:
-      "Try that button again... but differently 😌"
-  },
+    let noCount = 0;
+    let answered = false;
 
-  {
-    text:
-      "Hmm... my heart heard a YES 👀❤️",
-    hint:
-      "Let's pretend that NO never happened."
-  },
 
-  {
-    text:
-      "My heart is filing a complaint 💔😂",
-    hint:
-      "You have one more chance..."
-  },
+    /*
+     * Four funny NO responses.
+     */
 
-  {
-    text:
-      "Okay... now you're just teasing me 😭",
-    hint:
-      "I know that YES is hiding somewhere."
-  },
+    const noMessages = [
 
-  {
-    text:
-      "This is getting emotionally complicated 😂",
-    hint:
-      "Please consult your heart. ❤️"
-  },
+      {
+        symbol: "😂❤️",
 
-  {
-    text:
-      "Fine... I'll ask one last time 🥺",
-    hint:
-      "Do you REALLY love me?"
-  }
+        text:
+          "Are you sure, or are you just being dramatic? 😂❤️",
 
-];
+        hint:
+          "Think carefully, Rojalin... 😌"
+      },
 
 
-/*
-  YES
-*/
+      {
+        symbol: "🙈💕",
 
-yesButton.addEventListener(
-  "click",
-  handleYes
-);
+        text:
+          "I’m going to pretend I didn’t see that 😭💕",
 
+        hint:
+          "Okay... let's try this again."
+      },
 
-/*
-  NO
-*/
 
-noButton.addEventListener(
-  "click",
-  handleNo
-);
+      {
+        symbol: "😌✍️",
 
+        text:
+          "That was definitely a typo. We’ll try again 😌",
 
-/*
-  YES ACTION
-*/
+        hint:
+          "Take your time this time 👀"
+      },
 
-function handleYes() {
 
-  if (answered) {
-    return;
-  }
+      {
+        symbol: "👀",
 
-  answered = true;
+        text:
+          "Interesting answer… would you like to use your second chance? 👀",
 
-  /*
-    Small transition before
-    showing the success screen.
-  */
+        hint:
+          "I highly recommend reconsidering 😂❤️"
+      }
 
-  loveCard.style.transform =
-    "scale(0.92)";
+    ];
 
-  loveCard.style.opacity =
-    "0";
 
-  createConfetti();
+    /* =====================================
+       YES BUTTON
+    ===================================== */
 
-  setTimeout(() => {
+    yesButton.addEventListener(
+      "click",
+      function () {
 
-    successScreen.classList.add(
-      "show"
-    );
+        if (answered) {
+          return;
+        }
 
-    successScreen.setAttribute(
-      "aria-hidden",
-      "false"
-    );
+        answered = true;
 
-  }, 350);
-}
 
+        /*
+         * Start celebration.
+         */
 
-/*
-  NO ACTION
-*/
+        createConfetti();
 
-function handleNo() {
 
-  if (answered) {
-    return;
-  }
+        /*
+         * Shrink question card.
+         */
 
-  noCount++;
+        questionCard.style.transform =
+          "scale(0.86)";
 
-  const index =
-    Math.min(
-      noCount - 1,
-      noMessages.length - 1
-    );
+        questionCard.style.opacity =
+          "0";
 
-  subtitle.textContent =
-    noMessages[index].text;
 
-  hint.textContent =
-    noMessages[index].hint;
+        /*
+         * Reveal success screen.
+         */
 
+        setTimeout(
+          function () {
 
-  /*
-    Make YES progressively
-    more tempting.
-  */
+            successScreen.classList.add(
+              "show"
+            );
 
-  const yesScale =
-    Math.min(
-      1 + noCount * 0.075,
-      1.45
-    );
+            successScreen.setAttribute(
+              "aria-hidden",
+              "false"
+            );
 
-  yesButton.style.transform =
-    `scale(${yesScale})`;
 
+            /*
+             * More confetti after
+             * the reveal animation.
+             */
 
-  /*
-    Make the NO button slightly
-    smaller after each NO.
-  */
+            setTimeout(
+              function () {
 
-  const noScale =
-    Math.max(
-      1 - noCount * 0.035,
-      0.78
-    );
+                createConfetti();
 
-  noButton.style.transform =
-    `scale(${noScale})`;
+              },
+              550
+            );
 
+          },
+          450
+        );
 
-  /*
-    Move NO after the third
-    attempt.
-  */
-
-  if (noCount >= 3) {
-    moveNoButton();
-  }
-}
-
-
-/*
-  Move the NO button somewhere
-  safely inside the current screen.
-*/
-
-function moveNoButton() {
-
-  noButton.classList.add(
-    "moving"
-  );
-
-
-  const rect =
-    noButton.getBoundingClientRect();
-
-  const padding = 18;
-
-
-  /*
-    Keep it away from the very
-    edge of the screen.
-  */
-
-  const maxX =
-    Math.max(
-      padding,
-      window.innerWidth -
-      rect.width -
-      padding
-    );
-
-  const maxY =
-    Math.max(
-      padding,
-      window.innerHeight -
-      rect.height -
-      padding
+      }
     );
 
 
-  const x =
-    Math.random() *
-    (maxX - padding) +
-    padding;
+    /* =====================================
+       NO BUTTON
+    ===================================== */
 
-  const y =
-    Math.random() *
-    (maxY - padding) +
-    padding;
+    noButton.addEventListener(
+      "click",
+      function () {
 
+        if (answered) {
+          return;
+        }
 
-  noButton.style.left =
-    `${x}px`;
-
-  noButton.style.top =
-    `${y}px`;
-}
+        noCount++;
 
 
-/*
-  Keep NO inside the screen if
-  the phone rotates or resizes.
-*/
+        /*
+         * Select response.
+         */
 
-window.addEventListener(
-  "resize",
-  () => {
+        const index =
+          Math.min(
+            noCount - 1,
+            noMessages.length - 1
+          );
 
-    if (
-      noButton.classList.contains(
-        "moving"
-      )
+        const current =
+          noMessages[index];
+
+
+        /*
+         * Show reaction.
+         */
+
+        showReaction(
+          current.symbol
+        );
+
+
+        /*
+         * Change text.
+         */
+
+        subtitle.textContent =
+          current.text;
+
+        hint.textContent =
+          current.hint;
+
+
+        /*
+         * Animate text.
+         */
+
+        subtitle.style.opacity =
+          "0";
+
+        subtitle.style.transform =
+          "translateY(8px)";
+
+
+        requestAnimationFrame(
+          function () {
+
+            subtitle.style.opacity =
+              "1";
+
+            subtitle.style.transform =
+              "translateY(0)";
+
+          }
+        );
+
+
+        /*
+         * YES gets bigger.
+         */
+
+        const yesScale =
+          Math.min(
+            1 + noCount * 0.08,
+            1.40
+          );
+
+        yesButton.style.transform =
+          "scale(" +
+          yesScale +
+          ")";
+
+
+        /*
+         * NO gets smaller.
+         *
+         * 1st = 82%
+         * 2nd = 64%
+         * 3rd = 46%
+         * 4th = 28%
+         * 5th = disappears
+         */
+
+        if (noCount < 5) {
+
+          const noScale =
+            Math.max(
+              1 - noCount * 0.18,
+              0.28
+            );
+
+          noButton.style.transform =
+            "scale(" +
+            noScale +
+            ")";
+
+        }
+
+
+        /*
+         * Fifth NO.
+         */
+
+        if (noCount >= 5) {
+
+          noButton.classList.add(
+            "no-final"
+          );
+
+
+          subtitle.textContent =
+            "Okay... now it's just you and YES. 😂❤️";
+
+          hint.textContent =
+            "I think you know what to do, Rojalin 😌💕";
+
+
+          yesButton.style.transform =
+            "scale(1.35)";
+
+
+          setTimeout(
+            function () {
+
+              noButton.style.display =
+                "none";
+
+            },
+            550
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================
+       SHOW REACTION
+    ===================================== */
+
+    function showReaction(
+      symbol
     ) {
 
-      moveNoButton();
+      /*
+       * Remove old reaction.
+       */
+
+      reactionArea.innerHTML =
+        "";
+
+
+      /*
+       * Create new reaction.
+       */
+
+      const reaction =
+        document.createElement(
+          "div"
+        );
+
+      reaction.className =
+        "reaction-symbol";
+
+      reaction.textContent =
+        symbol;
+
+
+      reactionArea.appendChild(
+        reaction
+      );
+
+
+      /*
+       * Fade it out.
+       */
+
+      setTimeout(
+        function () {
+
+          reaction.classList.add(
+            "fade-out"
+          );
+
+        },
+        900
+      );
+
+
+      /*
+       * Remove old reaction.
+       */
+
+      setTimeout(
+        function () {
+
+          if (
+            reaction.parentNode
+          ) {
+
+            reaction.remove();
+
+          }
+
+        },
+        1300
+      );
+
+    }
+
+
+    /* =====================================
+       FINAL CELEBRATE BUTTON
+    ===================================== */
+
+    celebrateButton.addEventListener(
+      "click",
+      function () {
+
+        createConfetti();
+
+      }
+    );
+
+
+    /* =====================================
+       CONFETTI
+    ===================================== */
+
+    function createConfetti() {
+
+      const colors = [
+
+        "#ffffff",
+        "#ffd6e7",
+        "#ffde59",
+        "#ff8fab",
+        "#c77dff",
+        "#80ed99",
+        "#ff6b9d"
+
+      ];
+
+
+      const total =
+        150;
+
+
+      for (
+        let i = 0;
+        i < total;
+        i++
+      ) {
+
+        const piece =
+          document.createElement(
+            "div"
+          );
+
+
+        piece.className =
+          "confetti";
+
+
+        /*
+         * Random size.
+         */
+
+        const size =
+          5 + Math.random() * 9;
+
+
+        piece.style.width =
+          size + "px";
+
+
+        piece.style.height =
+          size * 1.5 + "px";
+
+
+        /*
+         * Random position.
+         */
+
+        piece.style.left =
+          Math.random() * 100 + "%";
+
+
+        /*
+         * Random color.
+         */
+
+        piece.style.background =
+          colors[
+            Math.floor(
+              Math.random() *
+              colors.length
+            )
+          ];
+
+
+        /*
+         * Random drift.
+         */
+
+        piece.style.setProperty(
+          "--drift",
+          (
+            (Math.random() - 0.5) *
+            340
+          ) + "px"
+        );
+
+
+        /*
+         * Random animation delay.
+         */
+
+        piece.style.animationDelay =
+          Math.random() * 0.7 + "s";
+
+
+        confettiContainer.appendChild(
+          piece
+        );
+
+
+        /*
+         * Clean up.
+         */
+
+        setTimeout(
+          function () {
+
+            piece.remove();
+
+          },
+          3100
+        );
+
+      }
 
     }
 
   }
 );
-
-
-/*
-  SUCCESS SCREEN
-*/
-
-closeButton.addEventListener(
-  "click",
-  () => {
-
-    successScreen.classList.remove(
-      "show"
-    );
-
-    successScreen.setAttribute(
-      "aria-hidden",
-      "true"
-    );
-
-  }
-);
-
-
-/*
-  CONFETTI
-*/
-
-function createConfetti() {
-
-  const colors = [
-
-    "#ffffff",
-    "#ffd6e7",
-    "#ffde59",
-    "#ff8fab",
-    "#c77dff",
-    "#80ed99"
-
-  ];
-
-
-  const total = 120;
-
-
-  for (
-    let i = 0;
-    i < total;
-    i++
-  ) {
-
-    const piece =
-      document.createElement(
-        "div"
-      );
-
-    piece.className =
-      "confetti";
-
-
-    const size =
-      6 +
-      Math.random() * 8;
-
-
-    piece.style.width =
-      `${size}px`;
-
-    piece.style.height =
-      `${size * 1.5}px`;
-
-
-    piece.style.left =
-      `${Math.random() * 100}%`;
-
-
-    piece.style.background =
-      colors[
-        Math.floor(
-          Math.random() *
-          colors.length
-        )
-      ];
-
-
-    piece.style.setProperty(
-      "--drift",
-      `${
-        (Math.random() - 0.5) *
-        260
-      }px`
-    );
-
-
-    piece.style.animationDelay =
-      `${
-        Math.random() * 0.45
-      }s`;
-
-
-    confettiContainer.appendChild(
-      piece
-    );
-
-
-    setTimeout(
-      () => {
-        piece.remove();
-      },
-      2600
-    );
-
-  }
-
-}
