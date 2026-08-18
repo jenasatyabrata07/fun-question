@@ -30,12 +30,12 @@ body {
   background:
     radial-gradient(
       circle at 20% 10%,
-      rgba(255, 255, 255, 0.95) 0,
+      rgba(255, 255, 255, 0.95) 0%,
       rgba(255, 255, 255, 0) 32%
     ),
     radial-gradient(
       circle at 90% 80%,
-      rgba(255, 210, 225, 0.8) 0,
+      rgba(255, 210, 225, 0.8) 0%,
       rgba(255, 210, 225, 0) 30%
     ),
     linear-gradient(
@@ -46,9 +46,10 @@ body {
     );
 }
 
-/* -------------------------
-   PAGE
-------------------------- */
+
+/* ==============================
+   MAIN PAGE
+============================== */
 
 .page {
   position: relative;
@@ -70,9 +71,10 @@ body {
   z-index: 2;
 }
 
-/* -------------------------
+
+/* ==============================
    CARD
-------------------------- */
+============================== */
 
 .love-card {
   position: relative;
@@ -85,16 +87,15 @@ body {
 
   text-align: center;
 
-  border:
-    1px solid rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.85);
 
   border-radius: 32px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(255, 255, 255, 0.94),
-      rgba(255, 245, 249, 0.88)
+      rgba(255, 255, 255, 0.97),
+      rgba(255, 245, 249, 0.93)
     );
 
   box-shadow:
@@ -102,17 +103,19 @@ body {
     0 8px 25px rgba(255, 92, 138, 0.12);
 
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 
   transition:
-    transform 0.5s ease,
-    opacity 0.5s ease;
+    transform 0.4s ease,
+    opacity 0.4s ease;
 
   z-index: 5;
 }
 
-/* -------------------------
+
+/* ==============================
    TOP HEART
-------------------------- */
+============================== */
 
 .top-heart {
   width: 78px;
@@ -140,13 +143,13 @@ body {
   box-shadow:
     0 12px 30px rgba(255, 79, 131, 0.3);
 
-  animation:
-    heartbeat 1.8s infinite;
+  animation: heartbeat 1.8s infinite;
 }
 
-/* -------------------------
-   SMALL LABEL
-------------------------- */
+
+/* ==============================
+   LABEL
+============================== */
 
 .tiny-text {
   margin-bottom: 12px;
@@ -160,17 +163,17 @@ body {
   letter-spacing: 3px;
 }
 
-/* -------------------------
-   MAIN QUESTION
-------------------------- */
+
+/* ==============================
+   QUESTION
+============================== */
 
 h1 {
   margin-bottom: 18px;
 
   color: #3e1629;
 
-  font-size:
-    clamp(35px, 10vw, 58px);
+  font-size: clamp(35px, 10vw, 58px);
 
   font-weight: 800;
 
@@ -186,29 +189,33 @@ h1 span {
     0 8px 20px rgba(239, 71, 121, 0.12);
 }
 
-/* -------------------------
-   SUBTITLE
-------------------------- */
+
+/* ==============================
+   MESSAGE
+============================== */
 
 .subtitle {
-  min-height: 48px;
+  min-height: 52px;
 
-  max-width: 400px;
+  max-width: 430px;
 
-  margin:
-    0 auto 15px;
+  margin: 0 auto 15px;
 
   color: #765163;
 
-  font-size:
-    clamp(15px, 4.2vw, 18px);
+  font-size: clamp(15px, 4.2vw, 18px);
 
   line-height: 1.5;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
-/* -------------------------
+
+/* ==============================
    HEART
-------------------------- */
+============================== */
 
 .question-heart {
   margin: 6px 0 24px;
@@ -219,29 +226,28 @@ h1 span {
 
   filter:
     drop-shadow(
-      0 8px 12px
-      rgba(255, 92, 138, 0.2)
+      0 8px 12px rgba(255, 92, 138, 0.2)
     );
 
   animation:
     pulse 1.5s ease-in-out infinite;
 }
 
-/* -------------------------
+
+/* ==============================
    BUTTONS
-------------------------- */
+============================== */
 
 .buttons {
   position: relative;
 
   display: flex;
-
   justify-content: center;
   align-items: center;
 
   gap: 14px;
 
-  min-height: 68px;
+  min-height: 70px;
 
   flex-wrap: wrap;
 }
@@ -250,17 +256,15 @@ h1 span {
   min-width: 138px;
   min-height: 58px;
 
-  padding:
-    14px 24px;
+  padding: 14px 24px;
 
-  border: 0;
+  border: none;
 
   border-radius: 18px;
 
   color: white;
 
-  font-size:
-    clamp(17px, 4.6vw, 20px);
+  font-size: clamp(17px, 4.6vw, 20px);
 
   font-weight: 800;
 
@@ -268,22 +272,26 @@ h1 span {
 
   user-select: none;
 
-  -webkit-tap-highlight-color:
-    transparent;
+  -webkit-user-select: none;
 
-  touch-action:
-    manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  touch-action: manipulation;
 
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    left 0.3s ease,
-    top 0.3s ease;
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    opacity 0.22s ease;
 }
+
 
 /* YES */
 
 .yes-button {
+  position: relative;
+
+  z-index: 10;
+
   background:
     linear-gradient(
       135deg,
@@ -292,59 +300,58 @@ h1 span {
     );
 
   box-shadow:
-    0 12px 28px
-    rgba(239, 63, 118, 0.3);
+    0 12px 28px rgba(239, 63, 118, 0.3);
 }
 
-.yes-button:hover {
-  transform:
-    translateY(-3px)
-    scale(1.03);
-
-  box-shadow:
-    0 16px 34px
-    rgba(239, 63, 118, 0.36);
+.yes-button:active {
+  opacity: 0.9;
 }
+
 
 /* NO */
 
 .no-button {
+  position: relative;
+
+  z-index: 10;
+
   background:
-    #9b8290;
+    linear-gradient(
+      135deg,
+      #a9919d,
+      #8e7482
+    );
 
   box-shadow:
-    0 10px 22px
-    rgba(95, 64, 78, 0.16);
+    0 10px 22px rgba(95, 64, 78, 0.16);
 }
-
-.no-button:hover {
-  transform:
-    translateY(-2px);
-}
-
-/* Moving NO */
 
 .no-button.moving {
   position: fixed;
-
-  z-index: 100;
+  z-index: 5000;
 }
 
-/* -------------------------
+
+/* ==============================
    HINT
-------------------------- */
+============================== */
 
 .hint {
+  min-height: 20px;
+
   margin-top: 20px;
 
   color: #ae8395;
 
   font-size: 13px;
+
+  line-height: 1.4;
 }
 
-/* -------------------------
+
+/* ==============================
    FLOATING HEARTS
-------------------------- */
+============================== */
 
 .hearts {
   position: fixed;
@@ -363,11 +370,9 @@ h1 span {
 
   bottom: -80px;
 
-  color:
-    rgba(255, 76, 125, 0.18);
+  color: rgba(255, 76, 125, 0.18);
 
-  font-size:
-    clamp(20px, 5vw, 42px);
+  font-size: clamp(20px, 5vw, 42px);
 
   animation:
     floatUp linear infinite;
@@ -376,7 +381,6 @@ h1 span {
 .hearts span:nth-child(1) {
   left: 7%;
   animation-duration: 11s;
-  animation-delay: 0s;
 }
 
 .hearts span:nth-child(2) {
@@ -433,9 +437,85 @@ h1 span {
   animation-delay: 7s;
 }
 
-/* -------------------------
+
+/* ==============================
+   BIG REACTION EMOJI
+============================== */
+
+.reaction-symbol {
+  position: fixed;
+
+  left: 50%;
+  top: 18%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0);
+
+  width: 90vw;
+
+  text-align: center;
+
+  font-size: clamp(75px, 22vw, 130px);
+
+  line-height: 1;
+
+  pointer-events: none;
+
+  z-index: 10000;
+
+  filter:
+    drop-shadow(
+      0 15px 25px rgba(80, 20, 45, 0.25)
+    );
+
+  animation:
+    reactionPop 0.55s
+    cubic-bezier(
+      0.34,
+      1.56,
+      0.64,
+      1
+    )
+    forwards;
+}
+
+.reaction-symbol.reaction-hide {
+  opacity: 0;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.35);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+
+/* ==============================
+   MESSAGE ANIMATION
+============================== */
+
+.message-pop {
+  animation:
+    messagePop 0.45s ease;
+}
+
+
+/* ==============================
+   NO SHAKE
+============================== */
+
+.no-shake {
+  animation:
+    noShake 0.4s ease;
+}
+
+
+/* ==============================
    SUCCESS SCREEN
-------------------------- */
+============================== */
 
 .success-screen {
   position: fixed;
@@ -443,7 +523,6 @@ h1 span {
   inset: 0;
 
   display: flex;
-
   justify-content: center;
   align-items: center;
 
@@ -454,6 +533,11 @@ h1 span {
     max(20px, env(safe-area-inset-left));
 
   background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255, 255, 255, 0.2),
+      transparent 30%
+    ),
     linear-gradient(
       135deg,
       #ff5f8f,
@@ -465,15 +549,14 @@ h1 span {
 
   visibility: hidden;
 
-  transform:
-    scale(1.08);
+  transform: scale(1.08);
 
   transition:
     opacity 0.5s ease,
     visibility 0.5s ease,
     transform 0.5s ease;
 
-  z-index: 200;
+  z-index: 20000;
 }
 
 .success-screen.show {
@@ -481,9 +564,13 @@ h1 span {
 
   visibility: visible;
 
-  transform:
-    scale(1);
+  transform: scale(1);
 }
+
+
+/* ==============================
+   SUCCESS CONTENT
+============================== */
 
 .success-content {
   width: min(90vw, 500px);
@@ -532,8 +619,6 @@ h1 span {
     clamp(36px, 10vw, 60px);
 
   line-height: 1.05;
-
-  letter-spacing: -1px;
 }
 
 .success-content > p:not(.success-small) {
@@ -544,8 +629,7 @@ h1 span {
 }
 
 .success-hearts {
-  margin:
-    24px 0;
+  margin: 24px 0;
 
   font-size:
     clamp(22px, 7vw, 34px);
@@ -553,11 +637,18 @@ h1 span {
   letter-spacing: 5px;
 }
 
-.close-button {
-  padding:
-    14px 22px;
 
-  border: 0;
+/* ==============================
+   CLOSE BUTTON
+============================== */
+
+.close-button {
+  min-height: 50px;
+
+  padding: 14px 22px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.3);
 
   border-radius: 16px;
 
@@ -574,6 +665,8 @@ h1 span {
 
   backdrop-filter: blur(8px);
 
+  -webkit-backdrop-filter: blur(8px);
+
   -webkit-tap-highlight-color:
     transparent;
 
@@ -581,9 +674,10 @@ h1 span {
     manipulation;
 }
 
-/* -------------------------
+
+/* ==============================
    CONFETTI
-------------------------- */
+============================== */
 
 .confetti-container {
   position: fixed;
@@ -594,7 +688,7 @@ h1 span {
 
   overflow: hidden;
 
-  z-index: 300;
+  z-index: 30000;
 }
 
 .confetti {
@@ -605,16 +699,15 @@ h1 span {
   border-radius: 3px;
 
   animation:
-    confettiFall 2.3s
-    ease-in forwards;
+    confettiFall 2.3s ease-in forwards;
 }
 
-/* -------------------------
+
+/* ==============================
    ANIMATIONS
-------------------------- */
+============================== */
 
 @keyframes heartbeat {
-
   0%,
   100% {
     transform: scale(1);
@@ -637,8 +730,8 @@ h1 span {
   }
 }
 
-@keyframes pulse {
 
+@keyframes pulse {
   0%,
   100% {
     transform: scale(1);
@@ -649,8 +742,8 @@ h1 span {
   }
 }
 
-@keyframes floatUp {
 
+@keyframes floatUp {
   0% {
     transform:
       translateY(0)
@@ -676,30 +769,119 @@ h1 span {
   }
 }
 
-@keyframes successPop {
 
+@keyframes reactionPop {
   0% {
     transform:
-      scale(0.7);
+      translate(-50%, -50%)
+      scale(0)
+      rotate(-15deg);
 
     opacity: 0;
   }
 
-  70% {
+  60% {
     transform:
-      scale(1.04);
+      translate(-50%, -50%)
+      scale(1.2)
+      rotate(5deg);
+
+    opacity: 1;
+  }
+
+  80% {
+    transform:
+      translate(-50%, -50%)
+      scale(0.92)
+      rotate(-2deg);
   }
 
   100% {
     transform:
-      scale(1);
+      translate(-50%, -50%)
+      scale(1)
+      rotate(0deg);
 
     opacity: 1;
   }
 }
 
-@keyframes bigHeart {
 
+@keyframes messagePop {
+  0% {
+    opacity: 0;
+
+    transform:
+      translateY(8px)
+      scale(0.96);
+  }
+
+  60% {
+    transform:
+      translateY(-2px)
+      scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+@keyframes noShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform:
+      translateX(-7px)
+      rotate(-3deg);
+  }
+
+  40% {
+    transform:
+      translateX(7px)
+      rotate(3deg);
+  }
+
+  60% {
+    transform:
+      translateX(-5px)
+      rotate(-2deg);
+  }
+
+  80% {
+    transform:
+      translateX(5px)
+      rotate(2deg);
+  }
+}
+
+
+@keyframes successPop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  70% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+@keyframes bigHeart {
   0%,
   100% {
     transform:
@@ -714,8 +896,8 @@ h1 span {
   }
 }
 
-@keyframes confettiFall {
 
+@keyframes confettiFall {
   0% {
     transform:
       translate3d(0, 0, 0)
@@ -737,24 +919,42 @@ h1 span {
   }
 }
 
-/* -------------------------
-   SMALL PHONES
-------------------------- */
+
+/* ==============================
+   MOBILE
+============================== */
 
 @media (max-width: 430px) {
+
+  .page {
+    padding:
+      max(14px, env(safe-area-inset-top))
+      12px
+      max(14px, env(safe-area-inset-bottom));
+  }
 
   .love-card {
     width: 94vw;
 
     padding:
-      26px 18px 24px;
+      25px 18px 23px;
+
+    border-radius: 26px;
   }
 
   .top-heart {
-    width: 68px;
-    height: 68px;
+    width: 66px;
+    height: 66px;
 
-    font-size: 32px;
+    margin-bottom: 16px;
+
+    font-size: 31px;
+  }
+
+  .tiny-text {
+    font-size: 10px;
+
+    letter-spacing: 2.2px;
   }
 
   h1 {
@@ -762,8 +962,18 @@ h1 span {
       clamp(34px, 11vw, 46px);
   }
 
+  .subtitle {
+    min-height: 50px;
+
+    font-size:
+      clamp(15px, 4.3vw, 18px);
+  }
+
   .question-heart {
-    margin-bottom: 20px;
+    margin:
+      4px 0 20px;
+
+    font-size: 34px;
   }
 
   .buttons {
@@ -772,18 +982,125 @@ h1 span {
 
   .love-button {
     min-width: 125px;
+
+    min-height: 55px;
+
+    padding:
+      13px 18px;
+  }
+
+  .hint {
+    margin-top: 17px;
+  }
+
+  .reaction-symbol {
+    top: 15%;
+
+    font-size:
+      clamp(70px, 24vw, 105px);
   }
 }
 
-/* -------------------------
+
+/* ==============================
+   VERY SMALL PHONES
+============================== */
+
+@media (max-width: 340px) {
+
+  .love-card {
+    padding:
+      20px 14px;
+  }
+
+  .top-heart {
+    width: 58px;
+    height: 58px;
+
+    font-size: 27px;
+  }
+
+  h1 {
+    font-size: 33px;
+  }
+
+  .love-button {
+    min-width: 115px;
+
+    font-size: 16px;
+  }
+}
+
+
+/* ==============================
+   LANDSCAPE PHONES
+============================== */
+
+@media (
+  max-height: 550px
+) and (
+  orientation: landscape
+) {
+
+  body {
+    overflow-y: auto;
+  }
+
+  .page {
+    min-height: 100vh;
+
+    padding: 15px;
+  }
+
+  .love-card {
+    padding:
+      20px 28px;
+  }
+
+  .top-heart {
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 10px;
+
+    font-size: 27px;
+  }
+
+  h1 {
+    font-size: 35px;
+
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    min-height: 30px;
+
+    margin-bottom: 8px;
+  }
+
+  .question-heart {
+    margin:
+      3px 0 12px;
+
+    font-size: 28px;
+  }
+
+  .hint {
+    margin-top: 10px;
+  }
+}
+
+
+/* ==============================
    ACCESSIBILITY
-------------------------- */
+============================== */
 
 @media (prefers-reduced-motion: reduce) {
 
   *,
   *::before,
   *::after {
+
     animation-duration:
       0.01ms !important;
 
