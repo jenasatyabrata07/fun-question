@@ -1,6 +1,493 @@
-/* =====================================
-   BIG REACTION EMOJI
-===================================== */
+/* =========================================
+   RESET
+========================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  color: #42152a;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 20% 10%,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0) 32%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(255, 210, 225, 0.8) 0%,
+      rgba(255, 210, 225, 0) 30%
+    ),
+    linear-gradient(
+      135deg,
+      #fff1f6 0%,
+      #ffd7e6 45%,
+      #ffc1d8 100%
+    );
+}
+
+
+/* =========================================
+   MAIN PAGE
+========================================= */
+
+.page {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding:
+    max(20px, env(safe-area-inset-top))
+    max(16px, env(safe-area-inset-right))
+    max(20px, env(safe-area-inset-bottom))
+    max(16px, env(safe-area-inset-left));
+
+  z-index: 2;
+}
+
+
+/* =========================================
+   LOVE CARD
+========================================= */
+
+.love-card {
+  position: relative;
+
+  width: min(92vw, 520px);
+
+  padding:
+    clamp(28px, 7vw, 50px)
+    clamp(20px, 7vw, 45px);
+
+  text-align: center;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.85);
+
+  border-radius: 32px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(255, 245, 249, 0.92)
+    );
+
+  box-shadow:
+    0 25px 80px rgba(157, 50, 92, 0.18),
+    0 8px 25px rgba(255, 92, 138, 0.12);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+
+  z-index: 5;
+}
+
+
+/* =========================================
+   TOP HEART
+========================================= */
+
+.top-heart {
+  width: 78px;
+  height: 78px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff7fa5,
+      #ff4f83
+    );
+
+  color: white;
+
+  font-size: 38px;
+
+  box-shadow:
+    0 12px 30px
+    rgba(255, 79, 131, 0.3);
+
+  animation:
+    heartbeat 1.8s infinite;
+}
+
+
+/* =========================================
+   SMALL TEXT
+========================================= */
+
+.tiny-text {
+  margin-bottom: 12px;
+
+  color: #d45b7f;
+
+  font-size: 11px;
+
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+
+/* =========================================
+   MAIN QUESTION
+========================================= */
+
+h1 {
+  margin-bottom: 18px;
+
+  color: #3e1629;
+
+  font-size:
+    clamp(35px, 10vw, 58px);
+
+  font-weight: 800;
+
+  line-height: 1.04;
+
+  letter-spacing: -2px;
+}
+
+h1 span {
+  color: #ef4779;
+
+  text-shadow:
+    0 8px 20px
+    rgba(239, 71, 121, 0.12);
+}
+
+
+/* =========================================
+   SUBTITLE / FUNNY MESSAGE
+========================================= */
+
+.subtitle {
+  min-height: 48px;
+
+  max-width: 400px;
+
+  margin:
+    0 auto 15px;
+
+  color: #765163;
+
+  font-size:
+    clamp(15px, 4.2vw, 18px);
+
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  transition:
+    all 0.25s ease;
+}
+
+
+/* =========================================
+   QUESTION HEART
+========================================= */
+
+.question-heart {
+  margin:
+    6px 0 24px;
+
+  color: #ff5c8a;
+
+  font-size: 38px;
+
+  filter:
+    drop-shadow(
+      0 8px 12px
+      rgba(255, 92, 138, 0.2)
+    );
+
+  animation:
+    pulse 1.5s ease-in-out infinite;
+}
+
+
+/* =========================================
+   BUTTON CONTAINER
+========================================= */
+
+.buttons {
+  position: relative;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 68px;
+
+  flex-wrap: wrap;
+}
+
+
+/* =========================================
+   GENERAL BUTTON
+========================================= */
+
+.love-button {
+  min-width: 138px;
+
+  min-height: 58px;
+
+  padding:
+    14px 24px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  color: white;
+
+  font-size:
+    clamp(17px, 4.6vw, 20px);
+
+  font-weight: 800;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  -webkit-user-select: none;
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+  touch-action:
+    manipulation;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+
+/* =========================================
+   YES BUTTON
+========================================= */
+
+.yes-button {
+  position: relative;
+
+  z-index: 10;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff668f,
+      #ef3f76
+    );
+
+  box-shadow:
+    0 12px 28px
+    rgba(239, 63, 118, 0.3);
+}
+
+.yes-button:hover {
+  box-shadow:
+    0 16px 34px
+    rgba(239, 63, 118, 0.38);
+}
+
+.yes-button:active {
+  opacity: 0.9;
+}
+
+
+/* =========================================
+   NO BUTTON
+========================================= */
+
+.no-button {
+  position: relative;
+
+  z-index: 10;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a9919d,
+      #8e7482
+    );
+
+  box-shadow:
+    0 10px 22px
+    rgba(95, 64, 78, 0.16);
+}
+
+.no-button:hover {
+  box-shadow:
+    0 13px 27px
+    rgba(95, 64, 78, 0.22);
+}
+
+
+/* =========================================
+   HINT
+========================================= */
+
+.hint {
+  min-height: 20px;
+
+  margin-top: 20px;
+
+  color: #ae8395;
+
+  font-size: 13px;
+
+  line-height: 1.4;
+
+  transition:
+    all 0.25s ease;
+}
+
+
+/* =========================================
+   FLOATING BACKGROUND HEARTS
+========================================= */
+
+.hearts {
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  z-index: 1;
+}
+
+.hearts span {
+  position: absolute;
+
+  bottom: -80px;
+
+  color:
+    rgba(255, 76, 125, 0.18);
+
+  font-size:
+    clamp(20px, 5vw, 42px);
+
+  animation:
+    floatUp linear infinite;
+}
+
+.hearts span:nth-child(1) {
+  left: 7%;
+  animation-duration: 11s;
+  animation-delay: 0s;
+}
+
+.hearts span:nth-child(2) {
+  left: 18%;
+  animation-duration: 14s;
+  animation-delay: 2s;
+}
+
+.hearts span:nth-child(3) {
+  left: 29%;
+  animation-duration: 12s;
+  animation-delay: 4s;
+}
+
+.hearts span:nth-child(4) {
+  left: 41%;
+  animation-duration: 15s;
+  animation-delay: 1s;
+}
+
+.hearts span:nth-child(5) {
+  left: 53%;
+  animation-duration: 10s;
+  animation-delay: 3s;
+}
+
+.hearts span:nth-child(6) {
+  left: 65%;
+  animation-duration: 14s;
+  animation-delay: 5s;
+}
+
+.hearts span:nth-child(7) {
+  left: 74%;
+  animation-duration: 12s;
+  animation-delay: 1s;
+}
+
+.hearts span:nth-child(8) {
+  left: 83%;
+  animation-duration: 16s;
+  animation-delay: 6s;
+}
+
+.hearts span:nth-child(9) {
+  left: 92%;
+  animation-duration: 13s;
+  animation-delay: 3s;
+}
+
+.hearts span:nth-child(10) {
+  left: 35%;
+  animation-duration: 17s;
+  animation-delay: 7s;
+}
+
+
+/* =========================================
+   BIG NO REACTION SYMBOL
+========================================= */
 
 .reaction-symbol {
   position: fixed;
@@ -14,6 +501,10 @@
 
   font-size:
     clamp(75px, 22vw, 130px);
+
+  line-height: 1;
+
+  text-align: center;
 
   z-index: 5000;
 
@@ -37,6 +528,8 @@
 }
 
 
+/* Fade reaction away */
+
 .reaction-symbol.reaction-hide {
   opacity: 0;
 
@@ -50,7 +543,351 @@
 }
 
 
-/* Big emoji entrance */
+/* =========================================
+   MESSAGE POP
+========================================= */
+
+.message-pop {
+  animation:
+    messagePop 0.45s ease;
+}
+
+
+/* =========================================
+   NO SHAKE
+========================================= */
+
+.no-shake {
+  animation:
+    noShake 0.4s ease;
+}
+
+
+/* =========================================
+   SUCCESS SCREEN
+========================================= */
+
+.success-screen {
+  position: fixed;
+
+  inset: 0;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  padding:
+    max(20px, env(safe-area-inset-top))
+    max(20px, env(safe-area-inset-right))
+    max(20px, env(safe-area-inset-bottom))
+    max(20px, env(safe-area-inset-left));
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(255, 255, 255, 0.2),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #ff5f8f,
+      #ef3f76 55%,
+      #c92b61
+    );
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transform:
+    scale(1.08);
+
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease,
+    transform 0.5s ease;
+
+  z-index: 2000;
+}
+
+
+/* Visible success screen */
+
+.success-screen.show {
+  opacity: 1;
+
+  visibility: visible;
+
+  transform:
+    scale(1);
+}
+
+
+/* =========================================
+   SUCCESS CONTENT
+========================================= */
+
+.success-content {
+  width: min(90vw, 500px);
+
+  padding:
+    clamp(28px, 7vw, 45px);
+
+  text-align: center;
+
+  color: white;
+
+  animation:
+    successPop 0.65s ease;
+}
+
+
+/* Big success heart */
+
+.big-heart {
+  margin-bottom: 15px;
+
+  font-size:
+    clamp(70px, 20vw, 120px);
+
+  filter:
+    drop-shadow(
+      0 15px 25px
+      rgba(90, 0, 25, 0.2)
+    );
+
+  animation:
+    bigHeart 1.2s
+    ease-in-out infinite;
+}
+
+
+/* I KNEW IT */
+
+.success-small {
+  margin-bottom: 10px;
+
+  font-size: 13px;
+
+  font-weight: 900;
+
+  letter-spacing: 4px;
+}
+
+
+/* Success title */
+
+.success-content h2 {
+  margin-bottom: 18px;
+
+  font-size:
+    clamp(36px, 10vw, 60px);
+
+  line-height: 1.05;
+
+  letter-spacing: -1px;
+}
+
+
+/* Success paragraph */
+
+.success-content > p:not(.success-small) {
+  font-size:
+    clamp(17px, 4.7vw, 21px);
+
+  line-height: 1.5;
+}
+
+
+/* Success hearts */
+
+.success-hearts {
+  margin:
+    24px 0;
+
+  font-size:
+    clamp(22px, 7vw, 34px);
+
+  letter-spacing: 5px;
+}
+
+
+/* =========================================
+   CLOSE SUCCESS BUTTON
+========================================= */
+
+.close-button {
+  min-height: 50px;
+
+  padding:
+    14px 22px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.3);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.18);
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  backdrop-filter:
+    blur(8px);
+
+  -webkit-backdrop-filter:
+    blur(8px);
+
+  -webkit-tap-highlight-color:
+    transparent;
+
+  touch-action:
+    manipulation;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.close-button:hover {
+  background:
+    rgba(255, 255, 255, 0.26);
+}
+
+.close-button:active {
+  transform:
+    scale(0.96);
+}
+
+
+/* =========================================
+   CONFETTI
+========================================= */
+
+.confetti-container {
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  overflow: hidden;
+
+  z-index: 3000;
+}
+
+.confetti {
+  position: absolute;
+
+  top: -30px;
+
+  border-radius: 3px;
+
+  animation:
+    confettiFall 2.3s
+    ease-in forwards;
+}
+
+
+/* =========================================
+   ANIMATION:
+   HEARTBEAT
+========================================= */
+
+@keyframes heartbeat {
+
+  0%,
+  100% {
+    transform:
+      scale(1);
+  }
+
+  15% {
+    transform:
+      scale(1.08);
+  }
+
+  30% {
+    transform:
+      scale(1);
+  }
+
+  45% {
+    transform:
+      scale(1.08);
+  }
+
+  60% {
+    transform:
+      scale(1);
+  }
+}
+
+
+/* =========================================
+   ANIMATION:
+   HEART PULSE
+========================================= */
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    transform:
+      scale(1);
+  }
+
+  50% {
+    transform:
+      scale(1.12);
+  }
+}
+
+
+/* =========================================
+   ANIMATION:
+   FLOATING HEARTS
+========================================= */
+
+@keyframes floatUp {
+
+  0% {
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translateY(-120vh)
+      rotate(360deg);
+
+    opacity: 0;
+  }
+}
+
+
+/* =========================================
+   ANIMATION:
+   BIG REACTION
+========================================= */
 
 @keyframes reactionPop {
 
@@ -87,19 +924,13 @@
 
     opacity: 1;
   }
-
 }
 
 
-/* =====================================
-   MESSAGE POP
-===================================== */
-
-.message-pop {
-  animation:
-    messagePop 0.45s ease;
-}
-
+/* =========================================
+   ANIMATION:
+   MESSAGE
+========================================= */
 
 @keyframes messagePop {
 
@@ -111,6 +942,12 @@
       scale(0.96);
   }
 
+  60% {
+    transform:
+      translateY(-2px)
+      scale(1.02);
+  }
+
   100% {
     opacity: 1;
 
@@ -118,19 +955,13 @@
       translateY(0)
       scale(1);
   }
-
 }
 
 
-/* =====================================
-   NO BUTTON SHAKE
-===================================== */
-
-.no-shake {
-  animation:
-    noShake 0.4s ease;
-}
-
+/* =========================================
+   ANIMATION:
+   NO SHAKE
+========================================= */
 
 @keyframes noShake {
 
@@ -163,5 +994,281 @@
       translateX(5px)
       rotate(2deg);
   }
+}
 
+
+/* =========================================
+   ANIMATION:
+   SUCCESS POP
+========================================= */
+
+@keyframes successPop {
+
+  0% {
+    transform:
+      scale(0.7);
+
+    opacity: 0;
+  }
+
+  70% {
+    transform:
+      scale(1.04);
+  }
+
+  100% {
+    transform:
+      scale(1);
+
+    opacity: 1;
+  }
+}
+
+
+/* =========================================
+   ANIMATION:
+   SUCCESS HEART
+========================================= */
+
+@keyframes bigHeart {
+
+  0%,
+  100% {
+    transform:
+      scale(1)
+      rotate(-3deg);
+  }
+
+  50% {
+    transform:
+      scale(1.12)
+      rotate(3deg);
+  }
+}
+
+
+/* =========================================
+   ANIMATION:
+   CONFETTI
+========================================= */
+
+@keyframes confettiFall {
+
+  0% {
+    transform:
+      translate3d(0, 0, 0)
+      rotate(0deg);
+
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate3d(
+        var(--drift),
+        115vh,
+        0
+      )
+      rotate(720deg);
+
+    opacity: 0;
+  }
+}
+
+
+/* =========================================
+   MOBILE PHONES
+========================================= */
+
+@media (max-width: 430px) {
+
+  .page {
+    padding:
+      max(14px, env(safe-area-inset-top))
+      12px
+      max(14px, env(safe-area-inset-bottom));
+  }
+
+  .love-card {
+    width: 94vw;
+
+    padding:
+      25px 18px 23px;
+
+    border-radius: 26px;
+  }
+
+  .top-heart {
+    width: 66px;
+    height: 66px;
+
+    margin-bottom: 16px;
+
+    font-size: 31px;
+  }
+
+  .tiny-text {
+    font-size: 10px;
+
+    letter-spacing: 2.2px;
+  }
+
+  h1 {
+    font-size:
+      clamp(34px, 11vw, 46px);
+
+    margin-bottom: 15px;
+  }
+
+  .subtitle {
+    min-height: 46px;
+
+    font-size:
+      clamp(15px, 4.3vw, 18px);
+  }
+
+  .question-heart {
+    margin:
+      4px 0 20px;
+
+    font-size: 34px;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+
+  .love-button {
+    min-width: 125px;
+
+    min-height: 55px;
+
+    padding:
+      13px 18px;
+  }
+
+  .hint {
+    margin-top: 17px;
+  }
+
+  .reaction-symbol {
+    top: 15%;
+
+    font-size:
+      clamp(70px, 24vw, 105px);
+  }
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 340px) {
+
+  .love-card {
+    padding:
+      20px 14px;
+  }
+
+  .top-heart {
+    width: 58px;
+    height: 58px;
+
+    font-size: 27px;
+  }
+
+  h1 {
+    font-size: 33px;
+  }
+
+  .love-button {
+    min-width: 115px;
+
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================
+   LANDSCAPE PHONES
+========================================= */
+
+@media (
+  max-height: 550px
+) and (
+  orientation: landscape
+) {
+
+  body {
+    overflow-y: auto;
+  }
+
+  .page {
+    min-height: 100vh;
+
+    padding:
+      15px;
+  }
+
+  .love-card {
+    padding:
+      20px 28px;
+  }
+
+  .top-heart {
+    width: 55px;
+    height: 55px;
+
+    margin-bottom: 10px;
+
+    font-size: 27px;
+  }
+
+  h1 {
+    font-size: 35px;
+
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    min-height: 30px;
+
+    margin-bottom: 8px;
+  }
+
+  .question-heart {
+    margin:
+      3px 0 12px;
+
+    font-size: 28px;
+  }
+
+  .hint {
+    margin-top: 10px;
+  }
+}
+
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  *,
+  *::before,
+  *::after {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+    transition-duration:
+      0.01ms !important;
+  }
 }
